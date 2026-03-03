@@ -20,6 +20,8 @@ public class PlayersTest extends BaseTest{
         List<String> playersList = playersPage.getPlayerName();
         assertTrue(playersList.contains(playerName));
         playersPage.clickPlayerName(playerName);
+        playersPage.typeQuantity("5");
+        playersPage.clickAddToCart();
 
 
 

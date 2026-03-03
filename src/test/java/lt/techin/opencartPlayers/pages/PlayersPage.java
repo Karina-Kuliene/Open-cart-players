@@ -13,10 +13,9 @@ public class PlayersPage extends BasePage {
     private static final By SEE_ALL_BUTTON = By.xpath("//a[normalize-space()='Show All MP3 Players']");
     private static final By LIST_BUTTON = By.cssSelector("#button-list");
     private static final By LIST_ITEM = By.cssSelector("div.description > h4 > a");
-    //    private static final By IPOD_CLASSIC = By.xpath("//a[normalize-space()='iPod Classic']");
-//    private static final By IPOD_NANO = By.xpath("//a[normalize-space()='iPod Nano']");
-//    private static final By IPOD_SHUFFLE = By.xpath("//a[normalize-space()='iPod Shuffle']");
-    private static final By IPOD_TOUCH = By.xpath("//a[normalize-space()='iPod Touch']");
+    private static final By QUANTITY_INPUT = By.cssSelector("#input-quantity");
+    private static final By ADD_TO_CART_BUTTON = By.cssSelector("#button-cart");
+    private static final By ALERT_MESSAGE = By.cssSelector("#button-cart div");
 
     public PlayersPage(WebDriver driver) {
         super(driver);
@@ -51,5 +50,19 @@ public class PlayersPage extends BasePage {
                 break;
             }
         }
+    }
+
+    public void typeQuantity(String quantity){
+        driver.findElement(QUANTITY_INPUT).clear();
+        driver.findElement(QUANTITY_INPUT).sendKeys(quantity);
+    }
+
+    public void clickAddToCart(){
+        driver.findElement(ADD_TO_CART_BUTTON).click();
+    }
+
+    public String getAlertMessageText(){
+
+        return driver.findElement(ALERT_MESSAGE).getText();
     }
 }
