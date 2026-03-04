@@ -10,14 +10,12 @@ import java.time.Duration;
 
 public class BaseTest {
     protected WebDriver driver;
-    protected WebDriverWait wait;
 
     @BeforeEach
     void setUp(){
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         driver.manage().window().maximize();
-        driver.get("http://192.168.22.230/");
+        driver.get("http://192.168.22.127/");
     }
 
     @AfterEach

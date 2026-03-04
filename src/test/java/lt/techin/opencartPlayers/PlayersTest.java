@@ -6,25 +6,30 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PlayersTest extends BaseTest{
+public class PlayersTest extends BaseTest {
 
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/players.csv")
-    void testMP3PlayersList(String playerName){
+    void testMP3PlayersList(String playerName) {
         PlayersPage playersPage = new PlayersPage(driver);
         playersPage.clickMP3PlayersButton();
         playersPage.clickSeeAll();
         playersPage.clickList();
         List<String> playersList = playersPage.getPlayerName();
+
         assertTrue(playersList.contains(playerName));
+
         playersPage.clickPlayerName(playerName);
         playersPage.typeQuantity("5");
         playersPage.clickAddToCart();
 
+        assertEquals("Success: You have added " + playerName + " to your shopping cart!", playersPage.getAlertMessageText());
 
 
     }
-
 }
+
+
