@@ -15,7 +15,7 @@ public class BaseTest {
     void setUp(){
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("http://192.168.22.127/");
+        driver.get("http://192.168.22.49/");
     }
 
     @AfterEach

@@ -23,11 +23,15 @@ public class PlayersTest extends BaseTest {
         assertTrue(playersList.contains(playerName));
 
         playersPage.clickPlayerName(playerName);
-        playersPage.typeQuantity("5");
+        playersPage.typeQuantity();
         playersPage.clickAddToCart();
 
-        assertEquals("Success: You have added " + playerName + " to your shopping cart!", playersPage.getAlertMessageText());
+        String expectedSuccessMessage = "Success: You have added " + playerName + " to your shopping cart!";
+        String actualMessage = playersPage.getAlertMessageText();
+        assertEquals(expectedSuccessMessage, actualMessage);
 
+        playersPage.clickShoppingCart();
+        
 
     }
 }

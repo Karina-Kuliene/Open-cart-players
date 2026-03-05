@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.Random;
 
 public class PlayersPage extends BasePage {
 
@@ -18,6 +19,7 @@ public class PlayersPage extends BasePage {
     private static final By QUANTITY_INPUT = By.cssSelector("#input-quantity");
     private static final By ADD_TO_CART_BUTTON = By.cssSelector("#button-cart");
     private static final By ALERT_MESSAGE = By.cssSelector("#alert div");
+    private static final By SHOPPING_CART = By.cssSelector("#header-cart > div.dropdown > button.btn");
     private static final By ITEM_NAME_IN_SHOPPING_CART = By.cssSelector(".text-start");
     private static final By ITEM_QUANTITY_IN_SHOPPING_CART = By.xpath("//tbody/tr/td[3]");
     private static final By ITEM_PRICE_IN_SHOPPING_CART = By.xpath("//tbody/tr/td[4]");
@@ -58,9 +60,10 @@ public class PlayersPage extends BasePage {
         }
     }
 
-    public void typeQuantity(String quantity){
+    public void typeQuantity(){
+        int quantity = new Random().nextInt(20) + 1;
         driver.findElement(QUANTITY_INPUT).clear();
-        driver.findElement(QUANTITY_INPUT).sendKeys(quantity);
+        driver.findElement(QUANTITY_INPUT).sendKeys(Integer.toString(quantity));
     }
 
     public void clickAddToCart(){
@@ -70,6 +73,10 @@ public class PlayersPage extends BasePage {
     public String getAlertMessageText(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(ALERT_MESSAGE));
         return driver.findElement(ALERT_MESSAGE).getText();
+    }
+
+    public void clickShoppingCart(){
+        driver.findElement(SHOPPING_CART).click();
     }
 
     public String getItemNameInShoppingCart(){
